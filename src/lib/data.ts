@@ -9,7 +9,7 @@ export const PERSON = {
   email: "msholehhudin.ms@gmail.com",
   linkedin: "https://www.linkedin.com/in/muhammad-sholehhudin/",
   github: "https://github.com/msholehhudin",
-  cvUrl: "#",
+  cvUrl: "/CV_M_Sholehhudin_Fullstack.pdf",
 };
 
 export const STACK = [
@@ -19,7 +19,7 @@ export const STACK = [
   { name: "Tailwind CSS", level: "Expert", icon: "⌁" },
   { name: "TanStack Query", level: "Advanced", icon: "⟳" },
   { name: "Redux", level: "Advanced", icon: "◈" },
-  { name: "REST / GraphQL", level: "Proficient", icon: "⬡" },
+  { name: "Supabase", level: "Proficient", icon: "▣" },
   { name: "Git / GitHub", level: "Advanced", icon: "⑂" },
 ];
 
@@ -30,10 +30,12 @@ export const PROJECTS: Project[] = [
     tags: ["SaaS", "Healthcare", "Featured"],
     tagVariants: ["blue", "green", "amber"],
     featured: true,
+    screenshot: "/medixpress.png",
+    link: "https://medixpress.vercel.app/",
     description:
       "A comprehensive healthcare delivery platform engineered to solve critical patient queue and appointment management problems. Built with real clinical workflows in mind, enabling healthcare providers to streamline operations and reduce patient wait times significantly.",
     highlight: "Reduced patient queue wait times · Real-world SaaS deployment",
-    tech: ["Next.js", "TypeScript", "TanStack Query", "Tailwind CSS", "REST API"],
+    tech: ["Next.js", "TypeScript", "TanStack Query", "Tailwind CSS", "Supabase"],
     caseStudyContent: {
       body: `<p>mediXpress addresses one of the most critical pain points in modern healthcare: patient queue management and appointment scheduling.</p>
 <p class="mt-4">The platform enables clinics and hospitals to digitize their patient intake process, manage appointment queues in real time, and give patients transparency into wait times — reducing friction, no-shows, and operational overhead.</p>
@@ -50,12 +52,14 @@ export const PROJECTS: Project[] = [
   {
     id: "joyinspec",
     title: "joy-inspec",
-    tags: ["CRM", "Production"],
-    tagVariants: ["blue", "amber"],
+    tags: ["CRM", "Production", "Company Profile"],
+    tagVariants: ["blue", "amber", "green"],
+    link: "https://joy-inspec.vercel.app/",
+    screenshot: "/JoyInspec.png",
     description:
       "Vehicle inspection CRM actively used in real business operations. Streamlines the inspection lifecycle from intake to report delivery, built in close collaboration with the client to match their exact workflows.",
     highlight: "Live in production · Built with real client collaboration",
-    tech: ["React.js", "Redux", "Tailwind CSS", "REST API"],
+    tech: ["Next.js", "TypeScript", "Tanstack Query", "Tailwind CSS"],
     caseStudyContent: {
       body: `<p>joy-inspec is a production CRM system built for a real vehicle inspection business, managing the full lifecycle of inspection jobs from intake to final report delivery.</p>
 <p class="mt-4">Built in direct collaboration with the client, the system was designed around their actual operational workflows — not a generic CRM template. This meant extensive iteration on UX, complex form logic, and tight integration with their reporting requirements.</p>
@@ -74,10 +78,12 @@ export const PROJECTS: Project[] = [
     title: "Bluespider Contact Center",
     tags: ["Real-time", "Omnichannel"],
     tagVariants: ["green", "blue"],
+    link: "https://demo-crm.aosgraha.com/",
+    screenshot: "/BSdemo.png",
     description:
       "Enterprise-grade omnichannel contact center platform with WebRTC voice, real-time messaging, and agent management. Architected for scale across thousands of concurrent connections.",
     highlight: "WebRTC + WebSocket · Thousands of concurrent connections",
-    tech: ["Next.js", "TypeScript", "WebRTC", "WebSocket", "Redux"],
+    tech: ["Vue.js", "Laravel", "WebRTC", "Firebase", "Docker"],
     caseStudyContent: {
       body: `<p>Bluespider is an enterprise-grade omnichannel contact center platform supporting WebRTC voice calls, real-time chat, email threading, and unified agent management.</p>
 <p class="mt-4">This was the most technically complex project in my portfolio, requiring deep expertise in real-time systems, WebRTC protocol, and managing concurrent state across hundreds of simultaneous interactions.</p>
@@ -124,22 +130,22 @@ export const EXPERIENCE: Experience[] = [
 export const CAREER_TIMELINE: TimelineItem[] = [
   {
     period: "2023 — Now",
-    role: "Frontend Engineer",
+    role: "Fullstack Developer",
     company: "Software House / Startup",
-    description: "Building React & Next.js applications for healthcare, CRM, and communication platforms.",
+    description: "Shipping production apps in healthcare, CRM, and real-time communication — from first commit to live users.",
     active: true,
   },
   {
     period: "2021 — 2023",
     role: "IT Engineer",
     company: "Multinational Broadcast Company",
-    description: "Bridging IT infrastructure and software development. Started shipping real code.",
+    description: "Kept broadcast infrastructure running at scale. Started writing code to fix problems tools couldn't solve.", 
   },
   {
     period: "2019 — 2021",
-    role: "IT Support Specialist",
-    company: "Various Organizations",
-    description: "Foundation in systems, networks, and deep empathy for how users interact with technology.",
+    role: "IT Support & Graphic Designer Specialist",
+    company: "Hospital",
+    description: "Learned that downtime has human cost. Fixed systems and hardware, designed communications, developed a deep instinct for usability.",
   },
 ];
 

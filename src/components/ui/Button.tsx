@@ -11,7 +11,14 @@ interface ButtonProps {
   external?: boolean;
 }
 
-export function Button({ href, onClick, children, variant = "primary", className, external }: ButtonProps) {
+export function Button({
+  href,
+  onClick,
+  children,
+  variant = "primary",
+  className,
+  external,
+}: ButtonProps) {
   const base =
     "inline-flex items-center gap-2 font-sans text-[0.88rem] font-medium px-5 py-3 rounded-lg transition-all duration-200 cursor-pointer";
 
@@ -29,7 +36,13 @@ export function Button({ href, onClick, children, variant = "primary", className
   if (href) {
     if (external) {
       return (
-        <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+          className={classes}
+        >
           {children}
         </a>
       );

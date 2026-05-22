@@ -10,6 +10,7 @@ import { TechPill } from "@/components/ui/TechPill";
 import { Button } from "@/components/ui/Button";
 import { ProjectModal } from "./ProjectModal";
 import { BrowserMockup } from "./BrowserMockup";
+import { AppWindowMockup } from "./AppWindowMockup";
 
 const PROJECT_ICONS: Record<string, string> = {
   joyinspec: "🔍",
@@ -77,11 +78,7 @@ export function ProjectsSection() {
                 className="flex flex-wrap gap-3"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Button
-                  href="https://medixpress.vercel.app/"
-                  variant="primary"
-                  external
-                >
+                <Button href={featured.link} variant="primary" external>
                   Live Demo ↗
                 </Button>
                 <Button
@@ -100,7 +97,7 @@ export function ProjectsSection() {
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                <BrowserMockup />
+                <BrowserMockup src={featured.screenshot} />
               </motion.div>
             </div>
           </motion.div>
@@ -117,13 +114,17 @@ export function ProjectsSection() {
                 className="bg-surface border border-border rounded-2xl overflow-hidden cursor-pointer group hover:border-accent/25 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] transition-all duration-300 flex flex-col"
               >
                 {/* Visual header */}
-                <div className="h-40 bg-gradient-to-br from-bg-3 to-[#0a0f1e] flex items-center justify-center relative overflow-hidden">
-                  <motion.span
-                    className="text-5xl opacity-40 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
-                    style={{ display: "block" }}
-                  >
-                    {PROJECT_ICONS[project.id] ?? "◈"}
-                  </motion.span>
+                <div className="bg-gradient-to-br from-bg-3 to-[#0a0f1e] flex items-center justify-center relative overflow-hidden">
+                  {project.screenshot ? (
+                    <AppWindowMockup
+                      src={project.screenshot}
+                      alt={project.title}
+                    />
+                  ) : (
+                    <motion.span className="text-5xl opacity-40 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
+                      {PROJECT_ICONS[project.id] ?? "◈"}
+                    </motion.span>
+                  )}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(79,142,247,0.08),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
