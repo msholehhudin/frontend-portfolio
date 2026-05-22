@@ -12,6 +12,7 @@ const STACK_TAGS = [
   "Redux",
 ];
 
+// Reduced to 2H + 1V — feels like rare accents, not constant noise
 function LedBeamH({
   top,
   duration,
@@ -33,8 +34,8 @@ function LedBeamH({
         left: 0,
         width: "120px",
         height: "1px",
-        background: `linear-gradient(90deg, transparent, rgba(${rgb},0.6), rgba(${rgb},1), rgba(${rgb},0.6), transparent)`,
-        boxShadow: `0 0 8px 2px rgba(${rgb},0.35)`,
+        background: `linear-gradient(90deg, transparent, rgba(${rgb},0.5), rgba(${rgb},0.9), rgba(${rgb},0.5), transparent)`,
+        boxShadow: `0 0 8px 2px rgba(${rgb},0.25)`,
       }}
       animate={{ x: ["-120px", "calc(100vw + 120px)"] }}
       transition={{
@@ -42,7 +43,7 @@ function LedBeamH({
         delay,
         repeat: Infinity,
         ease: "linear",
-        repeatDelay: 1.5,
+        repeatDelay: 5,
       }}
     />
   );
@@ -52,14 +53,12 @@ function LedBeamV({
   left,
   duration,
   delay,
-  color = "accent",
 }: {
   left: string;
   duration: number;
   delay: number;
-  color?: string;
 }) {
-  const rgb = color === "green" ? "52,211,153" : "79,142,247";
+  const rgb = "52,211,153";
   return (
     <motion.div
       className="absolute pointer-events-none"
@@ -68,8 +67,8 @@ function LedBeamV({
         top: 0,
         width: "1px",
         height: "80px",
-        background: `linear-gradient(180deg, transparent, rgba(${rgb},0.6), rgba(${rgb},1), rgba(${rgb},0.6), transparent)`,
-        boxShadow: `0 0 8px 2px rgba(${rgb},0.3)`,
+        background: `linear-gradient(180deg, transparent, rgba(${rgb},0.5), rgba(${rgb},0.9), rgba(${rgb},0.5), transparent)`,
+        boxShadow: `0 0 8px 2px rgba(${rgb},0.2)`,
       }}
       animate={{ y: ["-80px", "calc(100vh + 80px)"] }}
       transition={{
@@ -77,7 +76,7 @@ function LedBeamV({
         delay,
         repeat: Infinity,
         ease: "linear",
-        repeatDelay: 2,
+        repeatDelay: 4,
       }}
     />
   );
@@ -106,14 +105,14 @@ function FloatOrb({
         top: cy,
         width: size,
         height: size,
-        background: `rgba(${rgb},0.06)`,
+        background: `rgba(${rgb},0.055)`,
         filter: `blur(${size * 0.44}px)`,
         transform: "translate(-50%, -50%)",
       }}
       animate={{
-        x: [0, 32, -18, 0],
-        y: [0, -44, 22, 0],
-        scale: [1, 1.07, 0.95, 1],
+        x: [0, 28, -16, 0],
+        y: [0, -38, 20, 0],
+        scale: [1, 1.06, 0.96, 1],
       }}
       transition={{ duration, delay, repeat: Infinity, ease: "easeInOut" }}
     />
@@ -130,18 +129,18 @@ function CornerBracket({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
   return (
     <motion.div
       className={`absolute ${posStyles[pos]} pointer-events-none hidden lg:block`}
-      animate={{ opacity: [0.2, 0.55, 0.2] }}
+      animate={{ opacity: [0.15, 0.45, 0.15] }}
       transition={{
-        duration: 3.5,
+        duration: 4,
         repeat: Infinity,
         ease: "easeInOut",
         delay: pos === "tr" ? 1 : pos === "bl" ? 0.5 : pos === "br" ? 1.5 : 0,
       }}
     >
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path
-          d="M2 26 L2 2 L26 2"
-          stroke="rgba(79,142,247,0.45)"
+          d="M2 22 L2 2 L22 2"
+          stroke="rgba(79,142,247,0.4)"
           strokeWidth="1.5"
         />
       </svg>
@@ -155,41 +154,33 @@ export function HeroSection() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-10"
     >
-      {/* Ambient orbs */}
+      {/* Ambient orbs — 3 is enough, 4 was too heavy */}
       <FloatOrb
-        cx="65%"
-        cy="35%"
-        size={500}
+        cx="68%"
+        cy="32%"
+        size={480}
         rgb="79,142,247"
         duration={18}
         delay={0}
       />
       <FloatOrb
-        cx="18%"
-        cy="68%"
-        size={380}
+        cx="16%"
+        cy="70%"
+        size={360}
         rgb="124,106,247"
         duration={22}
         delay={4}
       />
       <FloatOrb
-        cx="82%"
-        cy="72%"
-        size={300}
+        cx="80%"
+        cy="74%"
+        size={280}
         rgb="52,211,153"
         duration={16}
         delay={8}
       />
-      <FloatOrb
-        cx="44%"
-        cy="18%"
-        size={260}
-        rgb="79,142,247"
-        duration={20}
-        delay={2}
-      />
 
-      {/* Grid */}
+      {/* Subtle grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -201,17 +192,10 @@ export function HeroSection() {
         }}
       />
 
-      {/* LED beams horizontal */}
-      <LedBeamH top="20%" duration={5.5} delay={0} color="accent" />
-      <LedBeamH top="55%" duration={7.2} delay={2.5} color="purple" />
-      <LedBeamH top="78%" duration={6.3} delay={5.0} color="accent" />
-      <LedBeamH top="38%" duration={8.5} delay={1.2} color="purple" />
-
-      {/* LED beams vertical */}
-      <LedBeamV left="15%" duration={6.5} delay={1.0} color="accent" />
-      <LedBeamV left="42%" duration={9.0} delay={3.5} color="green" />
-      <LedBeamV left="74%" duration={7.0} delay={0.5} color="accent" />
-      <LedBeamV left="88%" duration={5.8} delay={4.2} color="green" />
+      {/* LED beams — trimmed to 2H + 1V */}
+      <LedBeamH top="22%" duration={6} delay={0} color="accent" />
+      <LedBeamH top="64%" duration={8} delay={3.5} color="purple" />
+      <LedBeamV left="74%" duration={7} delay={1.5} />
 
       {/* Corner brackets */}
       <CornerBracket pos="tl" />
@@ -219,8 +203,8 @@ export function HeroSection() {
       <CornerBracket pos="bl" />
       <CornerBracket pos="br" />
 
-      {/* Main content */}
-      <div className="relative z-10 max-w-[980px] mx-auto text-center pt-24 pb-24">
+      {/* ─── Main content ─── */}
+      <div className="relative z-10  mx-auto text-center pt-24 pb-24">
         {/* Status badge */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -236,49 +220,49 @@ export function HeroSection() {
           Available for remote opportunities
         </motion.div>
 
-        {/* "Hi, I'm" label */}
+        {/* "Hi, I'm" */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-text-3"
+          className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-text-3 mb-1"
         >
           Hi, I'm
         </motion.p>
 
-        {/* Big name with shimmer */}
+        {/* Name */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-3"
+          className="mb-4"
         >
           <h2
+            className="animate-shimmer bg-[length:300%_auto] bg-clip-text text-transparent"
             style={{
-              fontSize: "clamp(3rem, 9vw, 6.5rem)",
+              fontSize: "clamp(2rem, 7vw, 7rem)",
               fontFamily: "var(--font-fraunces), serif",
               fontWeight: 300,
               letterSpacing: "-0.03em",
               lineHeight: 1.0,
-              background:
+              backgroundImage:
                 "linear-gradient(110deg, #f0f2f8 15%, #4f8ef7 38%, #7c6af7 52%, #f0f2f8 68%, #f0f2f8 100%)",
               backgroundSize: "200% auto",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              animation: "shimmerName 4s linear infinite",
             }}
           >
             Muhammad Sholehhudin
           </h2>
         </motion.div>
 
-        {/* Role badge */}
+        {/* Role badge — single source of truth, removed from headline */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-3 mb-3"
+          className="flex items-center justify-center gap-3 mb-6"
         >
           <motion.span
             className="h-px bg-gradient-to-r from-transparent to-accent/50"
@@ -295,26 +279,27 @@ export function HeroSection() {
           />
         </motion.div>
 
-        {/* Main headline */}
+        {/* Main headline — tightened, no duplicate role */}
         <motion.h1
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, delay: 0.56, ease: [0.16, 1, 0.3, 1] }}
-          style={{ fontSize: "clamp(1.75rem, 3.8vw, 3.2rem)" }}
+          style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.6rem)" }}
           className="font-serif font-light leading-[1.13] tracking-[-0.025em] text-text-1 mb-5"
         >
-          — Frontend Engineer —<br />
-          <em className="text-text-2">Crafting Scalable SaaS &amp;</em>
+          {/* <em className="text-text-2">Crafting SaaS &amp; Real-Time</em>
+          Systems Used in Production */}
+          <em className="text-text-2">Crafting SaaS & Real-Time Systems</em>
           <br />
-          Real-Time Systems Used in Production
+          <em>Used in Production</em>
         </motion.h1>
 
-        {/* Tagline */}
+        {/* Single tagline — merged, no duplicate */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.66, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif italic text-[1.0rem] text-text-2 mb-7"
+          className="font-serif italic text-[1.0rem] text-text-2 mb-4"
         >
           {PERSON.tagline}
         </motion.p>
@@ -324,34 +309,13 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono text-[0.72rem] tracking-[0.06em] text-text-3 mb-3 flex items-center justify-center gap-2"
+          className="font-mono text-[0.72rem] tracking-[0.06em] text-text-3 mb-8 flex items-center justify-center gap-2"
         >
           <span>📍</span>
           {PERSON.location}
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-[clamp(0.88rem,1.5vw,1.02rem)] text-text-2 leading-relaxed max-w-[540px] mx-auto mb-4"
-        >
-          Built SaaS, CRM, and real-time systems used in real business
-          operations.
-        </motion.p>
-        {/* Subtext */}
-        {/* <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-[clamp(0.88rem,1.5vw,1.02rem)] text-text-2 leading-relaxed max-w-[540px] mx-auto mb-9"
-        >
-          Specializing in React.js, Next.js, and modern frontend architecture
-          for global products. Crafting performant, accessible, and delightful
-          interfaces for SaaS and distributed teams.
-        </motion.p> */}
-
-        {/* Stack tags with stagger */}
+        {/* Stack tags */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -378,7 +342,7 @@ export function HeroSection() {
           ))}
         </motion.div>
 
-        {/* CTA buttons */}
+        {/* CTA buttons — clear visual ladder: primary > outlined > ghost */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -391,20 +355,21 @@ export function HeroSection() {
           <Button href={PERSON.cvUrl} variant="secondary" external>
             Download CV ↗
           </Button>
+          {/* Ghost/text variant — lower visual weight than the other two */}
           <Button href="#contact" variant="secondary">
             Contact Me
           </Button>
         </motion.div>
 
-        {/* Animated accent line with traveling dot */}
+        {/* Animated accent line */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 1.2, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto mt-12"
-          style={{ width: "280px", height: "1px", transformOrigin: "50%" }}
+          className="relative mx-auto mt-14"
+          style={{ width: "240px", height: "1px", transformOrigin: "50%" }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/35 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
           <motion.div
             className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-accent"
             style={{
@@ -412,7 +377,7 @@ export function HeroSection() {
               boxShadow:
                 "0 0 10px 2px rgba(79,142,247,0.8), 0 0 20px 4px rgba(79,142,247,0.3)",
             }}
-            animate={{ x: [0, 278, 0] }}
+            animate={{ x: [0, 238, 0] }}
             transition={{
               duration: 3.2,
               repeat: Infinity,
@@ -423,12 +388,12 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      {/* <motion.div
+      {/* Scroll indicator — restored */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        transition={{ delay: 1.8, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="font-mono text-[0.62rem] tracking-[0.14em] uppercase text-text-3">
           scroll
@@ -437,7 +402,7 @@ export function HeroSection() {
           className="w-px h-10 bg-gradient-to-b from-text-3 to-transparent"
           style={{ animation: "scrollLine 1.5s ease-in-out infinite" }}
         />
-      </motion.div> */}
+      </motion.div>
     </section>
   );
 }

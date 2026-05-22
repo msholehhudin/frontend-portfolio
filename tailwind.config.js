@@ -40,6 +40,7 @@ module.exports = {
         "fade-up": "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards",
         "pulse-dot": "pulseDot 2s infinite",
         "scroll-line": "scrollLine 1.5s infinite",
+        "shimmer": "shimmer 6s linear infinite",
       },
       keyframes: {
         fadeUp: {
@@ -54,6 +55,10 @@ module.exports = {
           "0%": { opacity: 0, transform: "scaleY(0) translateY(-100%)" },
           "50%": { opacity: 1 },
           "100%": { opacity: 0, transform: "scaleY(1) translateY(100%)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "200% center" },
+          "100%": { backgroundPosition: "-200% center" },
         },
       },
       screens: {
