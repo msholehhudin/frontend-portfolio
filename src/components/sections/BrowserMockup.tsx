@@ -5,7 +5,7 @@ interface BrowserMockupProps {
 
 export function BrowserMockup({
   src,
-  url = "https://medixpress.vercel.app/transactions",
+  url = "https://ai-sales-page-generator.vercel.app/generator",
 }: BrowserMockupProps) {
   return (
     <div className="w-full max-w-[420px] bg-bg border border-border rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">

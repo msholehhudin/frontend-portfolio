@@ -13,6 +13,8 @@ import { BrowserMockup } from "./BrowserMockup";
 import { AppWindowMockup } from "./AppWindowMockup";
 
 const PROJECT_ICONS: Record<string, string> = {
+  "ai-sales-page-generator": "✨",
+  "ev-battery-monitoring": "🔋",
   joyinspec: "🔍",
   bluespider: "📡",
 };

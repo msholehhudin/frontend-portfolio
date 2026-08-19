@@ -8,6 +8,7 @@ export interface Project {
   tech: string[];
   link: string;
   screenshot?: string;
+  screenshots?: string[];
   featured?: boolean;
   caseStudyContent?: {
     body: string;
